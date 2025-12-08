@@ -1,0 +1,136 @@
+/***********SELECT*********/
+
+.scraper-select{
+    position: relative;
+    width: 240px;
+    height: 50px;
+    padding: 0px;
+    border: none;
+    background-color: rgba(0,0,0,0);
+    z-index: 2;
+}
+.scraper-select-text{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 6px;
+    border: #374151 solid 2px;
+    background-color: #1f2937;
+    z-index: 1;
+}
+.scraper-select-text > div,
+.scraper-select-text > i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+}
+.scraper-select-text > div{
+    margin-right: 5px;
+}
+.scraper-select-text > i{
+    margin-left: 5px;
+}
+.scraper-select-text > div i,
+.scraper-select-text > i{
+    font-size: 1.2rem;
+    color: #ffffff;
+    transition: transform 0.25s;
+}
+.scraper-select-text > p{
+    display: block;
+    width: auto;
+    width: calc(100% - 60px);
+    width: -moz-calc(100% - 60px);
+    font-family: 'Inter';
+    font-size: 1rem;
+    color: #ffffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.scraper-select-options-wrap{
+    position: absolute;
+    width: 100%;
+    height: 0px;
+    top: 100%;
+    top: calc(100% - 6px);
+    top: -moz-calc(100% - 6px);
+    padding-top: 0px;
+    left: 0px;
+    overflow: hidden;
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.5);
+
+    transition: height 0.25s, padding 0.25s;
+}
+
+.scraper-select-options{
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: 0px 0px 6px 6px;
+    border: #374151 solid 2px;
+    top: 100%;
+    transform: translateY(-100%);
+    overflow: hidden;
+}
+.scraper-select-option{
+    position: relative;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding: 15px 10px;
+    border-bottom: #374151 solid 2px;
+    background-color: #101322;
+    overflow: hidden;
+}
+.scraper-select-option span{
+    position: relative;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    word-break: break-word;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+    transition: text-shadow 0.25s;
+}
+.scraper-select-options .scraper-select-option:last-child{
+    border-bottom: none;
+}
+.scraper-select-option::before{
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1f2937;
+
+    transition: width 0.25s, height 0.25s;
+}
+
+.scraper-select-options .selected::before,
+.scraper-select-option:hover::before{
+    width: 100%;
+    width: calc(100% + 5px);
+    width: -moz-calc(100% + 5px);
+    height: 250px;
+}
+.scraper-select-options .selected span,
+.scraper-select-option:hover span{
+    text-shadow: 0px 0px 3px rgba(0,0,0,1);
+}
+
+.scraper-select:focus .scraper-select-options-wrap{
+    padding-top: 6px;
+}
+.scraper-select:focus .scraper-select-text > a i{
+    transform: rotate(180deg);
+}

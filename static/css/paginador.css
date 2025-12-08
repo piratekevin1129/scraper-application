@@ -1,0 +1,53 @@
+.scraper-paginador-container{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.scraper-paginador{
+    position: relative;
+    width: auto;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.scraper-paginador-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    background-color: rgba(19,55,236,0);
+    margin: 0px 5px;
+
+    transition: background-color 0.25s;
+}
+.scraper-paginador-btn i,
+.scraper-paginador-btn span{
+    font-size: 1.2rem;
+    color: #9ca3af;
+
+    transition: color 0.25s;
+}
+.scraper-paginador-btn span{
+    font-weight: 500;
+}
+
+.scraper-paginador-btn:hover{
+    background-color: rgba(19,55,236,1);
+}
+.scraper-paginador-btn:hover i,
+.scraper-paginador-btn:hover span{
+    color: #ffffff;
+}
+
+.scraper-pages{
+    position: relative;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

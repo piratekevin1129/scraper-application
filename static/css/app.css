@@ -1,0 +1,180 @@
+.container{
+    position: relative;
+    width: 100%;
+}
+
+#app-container{
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    display: block;
+    padding: 50px;
+    background-color: #101322;
+
+    transition: width 1s, margin 1s;
+}
+
+.app-container-close{
+    width: 100%;
+    margin-left: 0px;
+}
+.app-container-open{
+    width: auto;
+    width: calc(100% - 300px);
+    width: -moz-calc(100% - 300px);
+    margin-left: 300px;
+}
+
+.col-title-button{
+    width: auto;
+    width: calc(100% - 250px);
+    width: -moz-calc(100% - 250px);
+}
+
+.col-form{
+    display: block;
+    width: 240px;
+}
+
+.scraper-title{
+    display: block;
+    width: 100%;
+    font-size: 2rem;
+    color: #ffffff;
+    font-weight: 900;
+}
+.scraper-title2{
+    display: block;
+    width: 100%;
+    font-size: 1.25rem;
+    color: #ffffff;
+    font-weight: 900;
+}
+.scraper-subtitle{
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    color: #9ca3af;
+}
+
+@keyframes animacion-button-loader {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+/***********CARDS*********/
+.cards-container{
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.cards-container .scraper-card:nth-child(4n),
+.cards-container .scraper-card2:nth-child(4n){
+    margin-right: 0px;
+}
+.scraper-card,
+.scraper-card2{
+    border: #1d2735 solid 2px;
+    background-color: #181e2d;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+
+    transition: border 0.15s, background-color 0.15s, box-shadow 0.15s;
+}
+.scraper-card:hover,
+.scraper-card2:hover{
+    background-color: #1f2937;
+    border: #353f4f solid 2px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    cursor: default;
+}
+
+.scraper-card > h6{
+    font-size: 1rem;
+    color: #9ca3af;
+    font-weight: 600;
+}
+.scraper-card > h2{
+    font-size: 2.5rem;
+    color: #ffffff;
+    font-weight: 700;
+    margin: 10px 0px;
+}
+.scraper-card > h5{
+    font-size: 0.9rem;
+}
+
+.scraper-card-positive{
+    color: #22c55e;
+}
+.scraper-card-negative{
+    color: #ef4444;
+}
+.scraper-card-neutral{
+    color: #6b7280;
+}
+
+/***********CARD*********/
+.scraper-card2-icon{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+.scraper-card2-icon > div{
+    display: flex;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255,255,255,0.2);
+    margin-right: 10px;
+}
+.scraper-card2-icon > div i{
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+.scraper-card2-icon > p{
+    display: block;
+    width: auto;
+    width: calc(100% - 50px);
+    width: -moz-calc(100% - 50px);
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+.scraper-card2-status{
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    color: #9ca3af;
+    margin: 20px 0px;
+}
+.scraper-card2 .healhty i{
+    color: #22c55e;
+}
+.scraper-card2 .warning{
+    color: #facc15 !important;
+}
+.scraper-card2 .error{
+    color: #ef4444 !important;
+}
+
+.scraper-card2-btn{
+    width: 100%;
+}
