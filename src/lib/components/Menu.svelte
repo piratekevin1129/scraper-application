@@ -22,14 +22,14 @@
                 <li>
                     <a href="/dashboard" class="menu-lateral-btn" class:menu-lateral-btn-active={active=='dashboard'}>
                         <i class="fas fa-border-all"></i>
-                        <span>Dashboard</span>
+                        <span>Panel de control</span>
                     </a>
                 </li>
                 {#if user_permissions.includes('run_jobs')}
                     <li>
                         <a href="/sources" class="menu-lateral-btn" class:menu-lateral-btn-active={active=='source'}>
                             <i class="fas fa-link"></i>
-                            <span>Sources</span>
+                            <span>Jobs</span>
                         </a>
                     </li>
                 {/if}
@@ -45,11 +45,11 @@
     <div class="menu-lateral-colbot">
         <a href="/settings" class="menu-lateral-btn" class:menu-lateral-btn-active={active=='settings'}>
             <i class="fas fa-cog"></i>
-            <span>Settings</span>
+            <span>Ajustes</span>
         </a>
         <a href="/logout" class="menu-lateral-btn">
             <i class="fas fa-sign-out-alt"></i>
-            <span>Log out</span>
+            <span>Cerrar sesión</span>
         </a>
         <div class="menu-lateral-profile">
             <div class="profile-photo">

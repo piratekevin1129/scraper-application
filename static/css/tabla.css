@@ -87,6 +87,13 @@
     background-color: rgba(255,255,255, 0.15);
 }
 
+.tr-filter-visible{
+    display: table-row;
+}
+.tr-filter-hidden{
+    display: none;
+}
+
 .status-container{
     position: relative;
     width: 100%;

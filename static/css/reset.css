@@ -130,6 +130,9 @@ a:hover{
 .a-center{
     align-items: center;
 }
+.a-stretch{
+    align-items: stretch;
+}
 .column{
     flex-direction: column;
 }

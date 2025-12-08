@@ -1,7 +1,6 @@
 <script>
     import Menu from '$lib/components/Menu.svelte';
-    import Buscador from '$lib/components/Buscador.svelte';
-    import Tabla from '$lib/components/Tabla.svelte';
+    import TablaB from '$lib/components/TablaB.svelte';
     import Paginador from '$lib/components/Paginador.svelte';
     import Modal from '$lib/components/Modal.svelte';
     let ModalInstance;
@@ -9,8 +8,21 @@
 
     import { enhance } from '$app/forms';
 
+    //datos para el modal al ver detalles del job
+    let modal_data = {
+        status:false,
+        size:'normal',
+        icon:'',
+        title:'',
+        type:'neutral',
+        loading:false,
+        loadingtext:''
+    };
+    let modal_text;
+
+    //datos traidos del backend antes de cargar
     export let data;
-    console.log(data);
+    //console.log(data);
 
     //nombre del usuario para imprimir en cualquier parte de las vistas
     const user = data.session_user;
@@ -39,18 +51,6 @@
         }
         return {clase_status:clase_status,percent:percent}
     }
-
-    //datos para el modal al ver detalles del job
-    let modal_data = {
-        status:false,
-        size:'normal',
-        icon:'',
-        title:'',
-        type:'neutral',
-        loading:false,
-        loadingtext:''
-    };
-    let modal_text;
 
     function clickVerJob(job_id){
         modal_data.status = true;
@@ -149,15 +149,13 @@
             </form>
         </div>
 
-        <Buscador />
-
-        <Tabla datos={datos}>
+        <TablaB table_id={'tabla_jobs'} datos={datos} buscador={true}>
             {#each jobs as job,index}
-                <tr>
-                    <td>
+                <tr id="{'tabla_jobs_tr_'+index}" data-id="{index}">
+                    <td filter>
                         <span>{job.job_id}</span>
                     </td>
-                    <td>
+                    <td filter>
                         <span>{utils.decodeFecha(job.created_at)}</span>
                     </td>
                     <td>
@@ -180,7 +178,7 @@
                     </td>
                 </tr>
             {/each}
-        </Tabla>
+        </TablaB>
 
         <Paginador />
     </section>

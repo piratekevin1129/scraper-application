@@ -1,9 +1,14 @@
 <script>
     import Menu from '$lib/components/Menu.svelte';
     import Select from '$lib/components/Select.svelte';
+    
     //datos traidos del backend antes de cargar
     export let data;
+    //console.log(data);
+
+    //nombre del usuario para imprimir en cualquier parte de las vistas
     const user = data.session_user;
+    //permisos para validar si se pintan algunos botones o no
     const permissions = data.session_permissions;
     
 </script>
