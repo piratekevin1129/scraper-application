@@ -2,6 +2,7 @@
     export let table_id;
     export let datos;
     export let buscador;
+    export let paginador;
 
     function focusBuscador(event){
         const current_class = event.target.parentNode.className
@@ -85,6 +86,7 @@
 <style>
     @import '/css/buscador.css';
     @import '/css/tabla.css';
+    @import '/css/paginador.css';
 </style>
 
 {#if buscador}
@@ -98,17 +100,52 @@
     </div>
 {/if}
 
-<div class="scraper-table-container mb-6">
-    <table id="{table_id}" class="scraper-table {datos.column_sizes}" cellpadding="0" cellspacing="0" border="0">
-        <thead>
-            <tr>
-                {#each datos.header as dato_header}
-                    <th><span>{dato_header}</span></th>
-                {/each}
-            </tr>
-        </thead>
-        <tbody>
-            <slot />
-        </tbody>
-    </table>
+<div class="scraper-table-wrap mb-6">
+    <div class="scraper-table-wrapper">
+        <div class="scraper-table-container">
+            <table id="{table_id}" class="scraper-table {datos.column_sizes}" cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                    <tr>
+                        {#each datos.header as dato_header}
+                            <th><span>{dato_header}</span></th>
+                        {/each}
+                    </tr>
+                </thead>
+                <tbody>
+                    <slot />
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="scraper-table-shadow"></div>
 </div>
+
+{#if paginador}
+    <div class="scraper-paginador-container">
+        <div class="scraper-paginador">
+            <button class="scraper-paginador-btn" aria-label="anterior">
+                <i class="fas fa-angle-left"></i>
+            </button>
+            <div class="scraper-pages">
+                <button class="scraper-paginador-btn">
+                    <span>1</span>
+                </button>
+                <button class="scraper-paginador-btn">
+                    <span>2</span>
+                </button>
+                <button class="scraper-paginador-btn">
+                    <span>...</span>
+                </button>
+                <button class="scraper-paginador-btn">
+                    <span>9</span>
+                </button>
+                <button class="scraper-paginador-btn">
+                    <span>10</span>
+                </button>
+            </div>
+            <button aria-label="siguiente" class="scraper-paginador-btn">
+                <i class="fas fa-angle-right"></i>
+            </button>
+        </div>
+    </div>
+{/if}

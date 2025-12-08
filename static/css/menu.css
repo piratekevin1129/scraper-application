@@ -176,6 +176,7 @@
 
     border-top: #1f2937 solid 2px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
 }
@@ -213,4 +214,63 @@
     color: rgba(255,255,255,0.5);
     font-size: 0.9rem;
     margin-top: 5px;
+}
+
+.app-container-close{
+    width: 100%;
+    margin-left: 0px;
+}
+.app-container-open{
+    width: auto;
+    width: calc(100% - 300px);
+    width: -moz-calc(100% - 300px);
+    margin-left: 300px;
+}
+
+@media (max-width: 768px) {
+    .app-container-open{
+        width: auto;
+        width: calc(100% - 50px);
+        width: -moz-calc(100% - 50px);
+        margin-left: 50px;
+    }
+    #menu-lateral-container{
+        width: 50px;
+        height: 100vh;
+        padding: 10px;
+    }
+    .menu-lateral-logo{
+        padding: 0px;
+    }
+    .menu-lateral-logo img{
+        width: 30px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .menu-lateral-logo h1{
+        display: none;
+    }
+    .menu-lateral-back-btn{
+        display: none;
+    }
+
+    .menu-lateral-btn{
+        padding: 0px;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    .menu-lateral-btn > i{
+        margin: 0px;
+    }
+    .menu-lateral-btn > span{
+        display: none;
+    }
+    .profile-photo{
+        width: 30px;
+        height: 30px;
+        margin-right: 0px;
+    }
+    .profile-info{
+        display: none;
+    }
 }

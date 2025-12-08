@@ -1,11 +1,7 @@
 export const jobs = [{
     "created_at":"2025-12-07T23:25:52.256468",
     "job_id":"cf7e81cd-7f15-448d-8fdf-a4e45f7dda63",
-    "status":'RUNNING'
-},{
-    "created_at":"2025-12-07T23:25:52.256468",
-    "job_id":"cf7e81cd-7f15-448d-8fdf-a4e45f7dda63",
-    "status":'RUNNING'
+    "status":'DONE'
 },{
     "created_at":"2025-12-07T23:44:54.722278",
     "job_id":"470a6a13-7868-4271-99fd-005def9d17ee",
@@ -17,5 +13,5 @@ export const jobs = [{
 },{
     "created_at":"2025-12-08T07:55:35.569365",
     "job_id":"82646b8b-f054-4198-9d5d-a064d195eacb",
-    "status":"RUNNING"
+    "status":"ERROR"
 }];

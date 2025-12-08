@@ -15,7 +15,7 @@
 
 <div class="container">
     <section id="app-container" class="app-container-open">
-        <div class="p-relative w100 d-flex j-between a-center mb-4">
+        <div class="p-relative w100 d-flex j-between md_j-center a-center mb-4">
             <div class="col-title-button">
                 <h1 class="scraper-title mb-1">Bienvenido, {user}!</h1>
                 <p class="scraper-subtitle">Aquí encontaras un resumen de tu actividad social</p>
@@ -120,70 +120,6 @@
             </div>
         </div>
 
-        <h1 class="scraper-title2 mb-4">Actividad Reciente</h1>
-
-        <div class="scraper-table2-container">
-            <table class="scraper-table2 col1-3 col2-2_5 col3-3 col4-1_5" cellpadding="0" cellspacing="0" border="0">
-                <thead>
-                    <tr>
-                        <th><span>Task Name</span></th>
-                        <th><span>Source</span></th>
-                        <th><span>Timestamp</span></th>
-                        <th class="th-center"><span>Status</span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <span>Scrape post for 'BrandX'</span>
-                        </td>
-                        <td>
-                            <span>Facebook</span>
-                        </td>
-                        <td>
-                            <span>2023-11-29 08:00:00</span>
-                        </td>
-                        <td>
-                            <div class="status2-container status2-container-completed">
-                                <span>Completed</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>Scrape post for 'BrandX'</span>
-                        </td>
-                        <td>
-                            <span>Facebook</span>
-                        </td>
-                        <td>
-                            <span>2023-11-29 08:00:00</span>
-                        </td>
-                        <td>
-                            <div class="status2-container status2-container-failed">
-                                <span>Failed</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>Scrape post for 'BrandX'</span>
-                        </td>
-                        <td>
-                            <span>Facebook</span>
-                        </td>
-                        <td>
-                            <span>2023-11-29 08:00:00</span>
-                        </td>
-                        <td>
-                            <div class="status2-container status2-container-processing">
-                                <span>Processing</span>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </section>
 
     <Menu user_id={user} user_permissions={permissions} active="dashboard" />

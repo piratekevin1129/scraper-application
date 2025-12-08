@@ -1,7 +1,6 @@
 <script>
     import Menu from '$lib/components/Menu.svelte';
     import TablaB from '$lib/components/TablaB.svelte';
-    import Paginador from '$lib/components/Paginador.svelte';
     import Modal from '$lib/components/Modal.svelte';
     let ModalInstance;
     import * as utils from '$lib/scripts/utils';
@@ -127,11 +126,11 @@
 
 <div class="container">
     <section id="app-container" class="app-container-open">
-        <div class="p-relative w100 d-flex j-between a-center mb-4">
+        <div class="p-relative w100 d-flex j-between md_j-center a-center mb-4">
             <div class="col-title-button">
                 <h1 class="scraper-title">Scraper Manager</h1>
             </div>
-            <form class="col-form" method="post" use:enhance={crearJob} id="formulario">
+            <form class="col-btn" method="post" use:enhance={crearJob} id="formulario">
                 <button 
                     class="scraper-button" 
                     class:scraper-button-disabled={btn_loading} 
@@ -149,7 +148,7 @@
             </form>
         </div>
 
-        <TablaB table_id={'tabla_jobs'} datos={datos} buscador={true}>
+        <TablaB table_id={'tabla_jobs'} datos={datos} buscador={true} paginador={true}>
             {#each jobs as job,index}
                 <tr id="{'tabla_jobs_tr_'+index}" data-id="{index}">
                     <td filter>
@@ -160,14 +159,14 @@
                     </td>
                     <td>
                         <div class="status-container status-container-{statusData(job.status).clase_status}">
-                            <span class="status-tag">{job.status}</span>
+                            <span class="status-tag">{job.status.toLowerCase()}</span>
                             <div class="status-progressbar">
                                 <div style="width:{statusData(job.status).percent}%"></div>
                             </div>
                             <span class="status-percent">{statusData(job.status).percent}%</span>
                         </div>
                     </td>
-                    <td>
+                    <td class="md_px-0" align="middle">
                         <button class="table-options-btn" aria-label="opciones" on:click={()=>clickVerJob(job.job_id)}>
                             <i class="fas fa-ellipsis-v"></i>
                             <!--<div class="table-options-btn-box">
@@ -179,8 +178,6 @@
                 </tr>
             {/each}
         </TablaB>
-
-        <Paginador />
     </section>
 
     <Menu user_id={user} user_permissions={permissions} active="source" />

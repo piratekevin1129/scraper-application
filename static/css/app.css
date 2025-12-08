@@ -14,24 +14,13 @@
     transition: width 1s, margin 1s;
 }
 
-.app-container-close{
-    width: 100%;
-    margin-left: 0px;
-}
-.app-container-open{
-    width: auto;
-    width: calc(100% - 300px);
-    width: -moz-calc(100% - 300px);
-    margin-left: 300px;
-}
-
 .col-title-button{
     width: auto;
     width: calc(100% - 250px);
     width: -moz-calc(100% - 250px);
 }
 
-.col-form{
+.col-btn{
     display: block;
     width: 240px;
 }
@@ -177,4 +166,30 @@
 
 .scraper-card2-btn{
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    #app-container{
+        padding: 25px;
+    }
+    .col-title-button{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .scraper-title{
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    .scraper-subtitle{
+        text-align: center;
+    }
+    .cards-container{
+        justify-content: center;
+    }
+    .scraper-card,
+    .scraper-card2{
+        width: 100%;
+        margin-bottom: 20px;
+        margin-right: 0px;
+    }
 }
