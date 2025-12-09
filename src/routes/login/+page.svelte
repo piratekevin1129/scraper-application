@@ -10,10 +10,13 @@
         loader_status = 'off';
     })
 
+    //variable para el comportamiento del mensaje de error
     let form_response = {error:false,message:''};
     let btn_loading = false;
 
     function enviarFormulario({form,data,action,cancel}) {
+        //bloqueamos el botón para que no haga click repetidas veces
+        document.getElementById('login-btn-formulario').disabled = true;
         btn_loading = true;
         form_response.error = false;
         
@@ -23,9 +26,10 @@
             // codigo luego de respuesta del servidor
             console.log(result.data)
             //poner boton dispoible para click
+            document.getElementById('login-btn-formulario').disabled = false;
             btn_loading = false;
+
             if (result.data.success == true) {
-                //form.reset();
                 goto('/dashboard');
             }else{
                 form_response.message = result.data.message;
@@ -35,6 +39,10 @@
     }
 
 </script>
+
+<style>
+    @import '/css/login.css';
+</style>
 
 <div class="container">
     <div class="login-container d-flex">
@@ -60,7 +68,7 @@
                     </button>
                 </div>
         
-                <a href="/forgot-password" class="login-forgot my-6">Recordar contraseña</a>
+                <a href="/" class="login-forgot my-6">Recordar contraseña</a>
                 
                 <div class="login-message-error" class:login-message-off={!form_response.error} class:login-message-on={form_response.error}>
                     <div class="login-message">
@@ -69,7 +77,7 @@
                     </div>
                 </div>
         
-                <button class="login-btn my-3" class:login-btn-disabled={btn_loading} class:login-btn-enabled={!btn_loading} class:login-btn-loading={btn_loading} type="submit" on:click={enviarFormulario}>
+                <button id="login-btn-formulario" class="login-btn my-3" class:login-btn-disabled={btn_loading} class:login-btn-enabled={!btn_loading} class:login-btn-loading={btn_loading} type="submit" on:click={enviarFormulario}>
                     {#if btn_loading}
                         <i class="fas fa-circle-notch"></i>
                     {/if}

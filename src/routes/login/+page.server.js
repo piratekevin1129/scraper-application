@@ -6,14 +6,6 @@ export const actions = {
         const form = await request.formData();
         const { user, pass } = Object.fromEntries(form);
 
-        //validacion extra
-        //const user = String(form.get('user') ?? '').trim();
-        //const password = String(form.get('password') ?? '').trim();
-
-        //if (!username || !password) {
-            //return fail(400, {error: 'Usuario y contraseña requeridos'});
-        //}
-
         const res_loging = await fetch('https://klolyketkc.execute-api.us-east-1.amazonaws.com/prod/login',{
             method:'POST',
             headers:{'Content-Type':'application/json'},
