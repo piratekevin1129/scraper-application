@@ -63,6 +63,9 @@
 
 .api-section-footer{
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border-top: #334155 solid 2px;
     background-color: #1e293b;
 }
@@ -105,5 +108,41 @@
 }
 
 @media (max-width: 768px) {
+    .api-section-logo{
+        width: 100%;
+        margin-bottom: 15px;
+    }
 
+    .api-section-logo > div{
+        width: 50px;
+        height: 50px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .api-section-logo > div img{
+        width: 40px;
+    }
+    .api-section-logo > div span{
+        width: 40px;
+        font-size: 1.2rem;
+    }
+    .api-section-information{
+        width: 100%;
+    }
+    .api-section-password{
+        max-width: initial;
+    }
+
+    .api-section-footer{
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .api-section-footer-status{
+        width: 100%;
+        margin-bottom: 15px;
+        justify-content: flex-end;
+    }
+    .api-section-footer-button{
+        margin-left: 0px;
+    }
 }

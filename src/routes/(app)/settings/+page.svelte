@@ -93,7 +93,7 @@
         {#each keys as key,index}
             <div class="api-section-container mb-6">
                 <form class="formulario-basico" method="post" use:enhance={actualizarApi} id="formulario-{index}">
-                    <div class="api-section-body p-6">
+                    <div class="api-section-body p-6 md_p-4">
                         <div class="api-section-logo">
                             <div>
                                 {#if key?.logo}
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="api-section-footer p-4 d-flex j-between a-center">
+                    <div class="api-section-footer p-4">
                         <div class="api-section-footer-status api-section-footer-status-done">
                             <i class="far fa-check-circle"></i>
                             <p>Conexión exitosa!</p>
@@ -142,7 +142,7 @@
         <!--agregar espacio para nueva key-->
         <div class="api-section-container mb-6">
             <form class="formulario-basico" method="post" use:enhance={actualizarApi} id="formulario-{keys.length}">
-                <div class="api-section-body p-6">
+                <div class="api-section-body p-6 md_p-4">
                     <div class="api-section-logo">
                         <div>
                             <span>API</span>
@@ -161,7 +161,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="api-section-footer p-4 d-flex j-between a-center">
+                <div class="api-section-footer p-4">
                     <div class="api-section-footer-status">
                         <i class="far fa-clock"></i>
                         <p>Sin conectar</p>

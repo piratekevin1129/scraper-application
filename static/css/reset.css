@@ -157,10 +157,13 @@ a:hover{
         padding-left: 0px !important;
         padding-right: 0px !important;
     }
-}
-
-@media (max-width: 768px) {
+    .md_p-4{
+        padding: 20px;
+    }
     .md_j-center{
         justify-content: center;
     }
+}
+
+@media (max-width: 520px) {
 }
