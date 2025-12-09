@@ -5,7 +5,7 @@
     justify-content: center;
 }
 
-.scraper-paginador{
+#scraper-paginador{
     position: relative;
     width: auto;
     max-width: 100%;
@@ -36,11 +36,13 @@
     font-weight: 500;
 }
 
-.scraper-paginador-btn:hover{
+.scraper-paginador-btn:hover,
+.scraper-pages .active{
     background-color: rgba(19,55,236,1);
 }
 .scraper-paginador-btn:hover i,
-.scraper-paginador-btn:hover span{
+.scraper-paginador-btn:hover span,
+.scraper-pages .active span{
     color: #ffffff;
 }
 

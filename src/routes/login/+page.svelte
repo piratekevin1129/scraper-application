@@ -14,26 +14,24 @@
     let btn_loading = false;
 
     function enviarFormulario({form,data,action,cancel}) {
-        //if(!btn_loading){
-            btn_loading = true;
-            form_response.error = false;
-            
-            // validacion client side pendiente
-    
-            return async ({result,update}) => {
-                // codigo luego de respuesta del servidor
-                console.log(result.data)
-                //poner boton dispoible para click
-                btn_loading = false;
-                if (result.data.success == true) {
-                    //form.reset();
-                    goto('/dashboard');
-                }else{
-                    form_response.message = result.data.message;
-                    form_response.error = result.data.error;
-                }
-            };
-        //}
+        btn_loading = true;
+        form_response.error = false;
+        
+        // validacion client side pendiente
+
+        return async ({result,update}) => {
+            // codigo luego de respuesta del servidor
+            console.log(result.data)
+            //poner boton dispoible para click
+            btn_loading = false;
+            if (result.data.success == true) {
+                //form.reset();
+                goto('/dashboard');
+            }else{
+                form_response.message = result.data.message;
+                form_response.error = result.data.error;
+            }
+        };
     }
 
 </script>

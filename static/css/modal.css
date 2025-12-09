@@ -1,4 +1,4 @@
-#modal{
+.modal{
     position: fixed;
     width: 100%;
     height: 100%;   
@@ -9,7 +9,7 @@
     align-items: center;
     justify-content: center;
 }
-#modal-box{
+.modal-box{
     position: relative;
     height: auto;
     border-radius: 8px;
@@ -45,6 +45,8 @@
 .modal-warning .modal-title h2{color: #ef4444;}
 .modal-neutral .modal-icon i,
 .modal-neutral .modal-title h2{color: #6b7280;}
+.modal-normal .modal-icon i,
+.modal-normal .modal-title h2{color: #ffffff;}
 
 .modal-icon i{
     font-size: 3rem;
@@ -56,6 +58,10 @@
     text-align: center;
     font-size: 1.2rem;
     text-align: center;
+}
+.modal-data{
+    position: relative;
+    width: 100%;
 }
 .modal-text p,
 .modal-loading > p{

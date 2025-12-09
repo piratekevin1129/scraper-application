@@ -30,17 +30,20 @@ export function decodeFecha(datestr,type = 'default'){
                 fecha = mes;
             break;
             case 'Month':
-                fecha = meses[Number(mes)];
+                fecha = meses[Number(mes)-1];
             case 'day':
                 fecha = dia;
             break;
-            case 'fecha_full':
-                fecha = String(dia+' de '+meses[Number(mes)+' de '+year]);
+            case 'fecha_solo':
+                fecha = String(dia+' de '+meses[Number(mes)-1]+' de '+ano);
             break;
             case 'fecha_completa':
-                fecha = String(dia+' de '+meses[Number(mes)+' de '+year]+' a las '+hora+':'+minutos+':'+segundos);
+                fecha = String(dia+' de '+meses[Number(mes)-1]+' de '+ano+' a las '+hora+':'+minutos+':'+segundos);
             break;
             case 'default':
+                fecha = String(dia+' de '+meses[Number(mes)-1]+' a las '+hora+':'+minutos);
+            break;
+            case 'code':
                fecha = String(ano+'/'+mes+'/'+dia+' '+hora+':'+minutos+':'+segundos); 
             break;
         };

@@ -3,6 +3,27 @@
     width: 100%;
     height: auto;
 }
+.buscador-mensaje{
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.buscador-mensaje p{
+    font-size: 0.9rem;
+    color: #ef4444;
+}
+.buscador-mensaje-on{
+    margin-top: 10px;
+    max-height: 50px;
+    transition: max-height 0.25s linear, margin-top 0.25s linear;
+}
+.buscador-mensaje-off{
+    margin-top: 0px;
+    max-height: 0px;
+    transition: max-height 0.25s linear, margin-top 0.25s linear;
+}
+
 .buscador-form-group{
     position: relative;
     display: flex;

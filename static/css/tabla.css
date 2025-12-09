@@ -140,7 +140,6 @@
 }
 .status-progressbar > div{
     height: 100%;
-    transition: width 2s ease-out 2s;
 }
 .status-percent{
     display: block;

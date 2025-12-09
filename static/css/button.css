@@ -41,13 +41,15 @@
 
     transition: color 0.25s;
 }
-.scraper-button-loading span{
+.scraper-button-loading span,
+.scraper-button2-loading span{
     max-width: auto;
     max-width: calc(100% - 25px);
     max-width: -moz-calc(100% - 25px);
 }
 
-.scraper-button-loading > i{
+.scraper-button-loading > i,
+.scraper-button2-loading > i{
     display: flex;
     width: 20px;
     margin-right: 5px;

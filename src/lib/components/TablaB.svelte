@@ -2,7 +2,6 @@
     export let table_id;
     export let datos;
     export let buscador;
-    export let paginador;
 
     function focusBuscador(event){
         const current_class = event.target.parentNode.className
@@ -16,22 +15,30 @@
         event.target.parentNode.className = new_class
     }
 
+    let status_buscador_mensaje = 'off';
+
     function keyupBuscador(event){
         const texto = event.target.value
         //console.log(texto)
-        filterData(texto)
+        filterData(texto.trim())
     }
 
     function filterData(texto){
         const txt = texto.toLowerCase();
         let tr_rows = document.getElementById(table_id).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
 
-        if(txt.trim()==''){
+        if(texto.length<=3){
             //dejar la tabla inicial
             for(let i = 0;i<tr_rows.length;i++){
                 tr_rows[i].removeAttribute("class")
             }
-        }else{
+            if(texto.length>0){
+                status_buscador_mensaje = 'on';
+            }else{
+                status_buscador_mensaje = 'off';    
+            }
+        }else{            
+            status_buscador_mensaje = 'off';
             //obtener todos los td del body
             const td_complete_rows = document.getElementById(table_id).getElementsByTagName('td')
             
@@ -86,17 +93,19 @@
 <style>
     @import '/css/buscador.css';
     @import '/css/tabla.css';
-    @import '/css/paginador.css';
 </style>
 
 {#if buscador}
-    <div class="buscador-container mb-6">
+    <div class="buscador-container">
         <div class="buscador-form-group buscador-form-group-out px-4">
             <div>
                 <i class="fas fa-search"></i>
             </div>
             <input name="buscador" type="text" placeholder="Buscar perfiles o términos" autocomplete="off" on:focus="{focusBuscador}" on:blur="{blurBuscador}" on:keyup="{keyupBuscador}" />
         </div>
+    </div>
+    <div class="buscador-mensaje buscador-mensaje-{status_buscador_mensaje} mb-6">
+        <p>Debes escribir al menos 3 caracteres</p>
     </div>
 {/if}
 
@@ -111,41 +120,9 @@
                         {/each}
                     </tr>
                 </thead>
-                <tbody>
-                    <slot />
-                </tbody>
+                <slot />
             </table>
         </div>
     </div>
     <div class="scraper-table-shadow"></div>
 </div>
-
-{#if paginador}
-    <div class="scraper-paginador-container">
-        <div class="scraper-paginador">
-            <button class="scraper-paginador-btn" aria-label="anterior">
-                <i class="fas fa-angle-left"></i>
-            </button>
-            <div class="scraper-pages">
-                <button class="scraper-paginador-btn">
-                    <span>1</span>
-                </button>
-                <button class="scraper-paginador-btn">
-                    <span>2</span>
-                </button>
-                <button class="scraper-paginador-btn">
-                    <span>...</span>
-                </button>
-                <button class="scraper-paginador-btn">
-                    <span>9</span>
-                </button>
-                <button class="scraper-paginador-btn">
-                    <span>10</span>
-                </button>
-            </div>
-            <button aria-label="siguiente" class="scraper-paginador-btn">
-                <i class="fas fa-angle-right"></i>
-            </button>
-        </div>
-    </div>
-{/if}
