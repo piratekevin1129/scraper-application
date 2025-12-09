@@ -28,3 +28,29 @@ login/
 (app) -> se meten todas las otras vistas en esta carpeta para que carguen todas el mismo layout, ya que el layout del login es muy distinto.
     /layout.server.js
         -> se detecta si ya hay una sesión, si hay lo deja pasar, si no hay lo redirige al /login.
+        -> a su vez, obtiene 3 cookies de la sesión que se usan en casi toda la aplicación y las exporta para que sean usadas en la vista:
+            * nombre de usuario.
+            * array de los permisos/roles.
+            * array de las apikeys.
+    /layout.svelte
+        -> carga archivos css que se van a usar en casi toda la aplicación, por ejemplo botones, select, mensajes, etc...
+    /page.svelte
+        -> se creó por defecto, pero no tiene nada, si se elimina a veces sale un error.
+
+/dashboard
+    /page.server.js
+        -> función que se ejecuta al cargar la página, extrae la lista de jobs.
+        -> OJO! los jobs se extraen del archivo /lib/jobs.js ya que todavía no hay un servicio para traerlos todos.
+        -> los jobs se exportan y se mezclan automáticamente con lo que exporta (app)/layout.server.js y asi pueden ser usados en la vista.
+    /page.svelte
+        -> vista de dashboard, nada inusual
+
+/sources
+    /page.server.js
+        -> función que se ejecuta al cargar la página, extrae la lista de jobs.
+        -> OJO! los jobs se extraen del archivo /lib/jobs.js ya que todavía no hay un servicio para traerlos todos.
+        -> los jobs se exportan y se mezclan automáticamente con lo que exporta (app)/layout.server.js y asi pueden ser usados en la vista.
+        -> función default para el login que llega por medio del <form> de la vista.
+        -> dicha función ejecuta el servicio #2, OJO! No se reciben los datos del formulario ya que el servicio no los pide.
+    /page.svelte
+        -> vista de sources

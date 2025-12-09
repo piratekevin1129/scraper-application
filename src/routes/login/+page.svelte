@@ -13,7 +13,7 @@
     //variable para el comportamiento del mensaje de error
     let form_response = {error:false,message:''};
     let btn_loading = false;
-
+    
     function enviarFormulario({form,data,action,cancel}) {
         //bloqueamos el botón para que no haga click repetidas veces
         //document.getElementById('login-btn-formulario').disabled = true;

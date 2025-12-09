@@ -7,7 +7,7 @@
 
     import { enhance } from '$app/forms';
 
-    //datos para el modal al ver detalles del job
+    //datos para el modal
     let modal_data = {
         status:false,
         size:'normal',
@@ -23,7 +23,7 @@
     export let data;
     //console.log(data);
 
-    //nombre del usuario para imprimir en cualquier parte de las vistas
+    //nombre del usuario para imprimir en cualquier parte de la vistas
     const user = data.session_user;
     //permisos para validar si se pintan algunos botones o no
     const permissions = data.session_permissions;
