@@ -8,7 +8,7 @@
 
     import { enhance } from '$app/forms';
 
-    //datos para el modal al ver detalles del job
+    //datos para el modal al ver crear el job
     let modal_data = {
         status:false,
         size:'normal',
@@ -24,7 +24,7 @@
     export let data;
     //console.log(data);
 
-    //nombre del usuario para imprimir en cualquier parte de las vistas
+    //nombre del usuario para imprimir en cualquier parte de la vista
     const user = data.session_user;
     //permisos para validar si se pintan algunos botones o no
     const permissions = data.session_permissions;
@@ -38,6 +38,7 @@
         body:[]
     }
 
+    //al darle click se abre un modal de tipo loader, mientras se carga la información del job
     function clickVerJob(job_id){
         modal_data.status = true;
         modal_data.size = 'normal';
@@ -50,6 +51,7 @@
         clickVerJobDetails(job_id);
     }
 
+    //función que consume el servicio de la información del job
     async function clickVerJobDetails(job_id){
         const res_job = await fetch(`/api/job?id=${job_id}`);
         const data_job = await res_job.json();
@@ -64,7 +66,7 @@
         modal_text = `Estado: ${data_job.status} <br> Fecha de creación: ${utils.decodeFecha(data_job.created_at)}`;
     }
 
-    //crear job
+    //funcion que consume el servicio para crear un job
     let btn_loading = false;
     function crearJob({form,data,action,cancel}) {
         btn_loading = true;
@@ -108,6 +110,7 @@
         };
     }
 
+    //abre el modal con un formulario para crear el job 
     let modal_job_status = false;
     function openCrearJob(){
         modal_job_status = true;
@@ -116,8 +119,10 @@
     //organizar array jobs para paginador
     let limit_paginador = 5;
     let page_paginador = 0;
+
+    //separar array de jobs por tandas
     let jobs_collection = paginador.setPaginadorCollection(jobs,limit_paginador);
-    //console.log(jobs_collection);
+    
 
     function pagePaginador(p){
         page_paginador = p;
@@ -175,10 +180,6 @@
                     <td class="md_px-0" align="middle">
                         <button class="table-options-btn" aria-label="opciones" on:click={()=>clickVerJob(job.job_id)}>
                             <i class="fas fa-ellipsis-v"></i>
-                            <!--<div class="table-options-btn-box">
-                                <div><span>Actualizar<span></div>
-                                <div><span>Ver</span></div>
-                            </div>-->
                         </button>
                     </td>
                 </tr>
@@ -217,6 +218,7 @@
     </Modal>
 
     <!--Modal exclusivo para crear Job-->
+    <!--Trae un formulario demo, por ahora no hace nada, pero a futuro si-->
     <div id="modal_job" class="modal" class:modal-off={!modal_job_status} class:modal-on={modal_job_status}>
         <div class="modal-box modal-box-normal modal-normal">
             <form class="formulario-basico" method="post" use:enhance={crearJob} id="formulario">

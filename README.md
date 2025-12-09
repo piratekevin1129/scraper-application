@@ -53,4 +53,16 @@ login/
         -> función default para el login que llega por medio del <form> de la vista.
         -> dicha función ejecuta el servicio #2, OJO! No se reciben los datos del formulario ya que el servicio no los pide.
     /page.svelte
-        -> vista de sources
+        -> vista de sources, nada inusual
+
+/settings
+    /page.server.js
+        -> función default para el actualizar api key (servicio #5) que llega por medio del <form> de la vista.
+        -> cuando se actualiza la apikey, se almacena nuevamente en la cookie "session_keys" y se recarga la página.
+    /page.svelte
+        -> vista de settings, nada inusual
+        -> se agrega un formulario extra para guardar una nueva key, pero el servicio solo guarda una (pendiente)
+
+
+/lib/components/Loader.svelte
+    -> 

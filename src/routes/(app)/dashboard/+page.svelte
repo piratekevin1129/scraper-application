@@ -23,7 +23,7 @@
     export let data;
     //console.log(data);
 
-    //nombre del usuario para imprimir en cualquier parte de la vistas
+    //nombre del usuario para imprimir en cualquier parte de la vista
     const user = data.session_user;
     //permisos para validar si se pintan algunos botones o no
     const permissions = data.session_permissions;
