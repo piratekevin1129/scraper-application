@@ -12,16 +12,21 @@ export const load = ({cookies,url}) => {
 
         const cookie_user = cookies.get('session_user');
         const cookie_permissions = cookies.get('session_permissions');
+        const cookie_keys = cookies.get('session_keys');
         
         //por defecto son estos valores
         let session_user = 'Usuario';
         let session_permissions = [];
+        let session_keys = [];
     
         if(cookie_user){
             session_user = cookie_user;
         }
         if(cookie_permissions){
             session_permissions = JSON.parse(cookie_permissions).permissions;
+        }
+        if(cookie_keys){
+            session_keys = JSON.parse(cookie_keys).keys;
         }
 
         //si la ruta es /sources, hacer una validación extra con los permisos 
@@ -34,7 +39,8 @@ export const load = ({cookies,url}) => {
 
         return {
             session_user:session_user,
-            session_permissions:session_permissions
+            session_permissions:session_permissions,
+            session_keys:session_keys
         };
     }
 

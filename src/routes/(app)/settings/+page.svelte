@@ -1,4 +1,6 @@
 <script>
+    import Loader from '$lib/components/Loader.svelte';
+    let loader_status = 'off';
     import Menu from '$lib/components/Menu.svelte';
     import Modal from '$lib/components/Modal.svelte';
     let ModalInstance;
@@ -18,15 +20,14 @@
 
     //datos traidos del backend antes de cargar
     export let data;
-    //console.log(data);
+    console.log(data);
 
     //nombre del usuario para imprimir en cualquier parte de las vistas
     const user = data.session_user;
     //permisos para validar si se pintan algunos botones o no
     const permissions = data.session_permissions;
-
-    let api_icon_status = 'far fa-clock';
-    let api_result_status = 'Not connected';
+    //apikeys
+    const keys = data.session_keys;
 
     let btn_loading = false;
     function actualizarApi({form,data,action,cancel}){
@@ -58,10 +59,16 @@
                 modal_data.loadingtext = '';
                 
                 modal_text = result.data.error;
-                console.log(result.data.error)
             }
         };
     }
+
+    function recargarPagina(){
+        //poner cargador
+        loader_status = 'on'
+        window.location.reload();
+    }
+
 </script>
 
 <style>
@@ -78,32 +85,86 @@
             </div>
         </div>
 
+        <br>
+
         <h1 class="scraper-title2 mb-2">Integración de API</h1>
         <p class="scraper-subtitle mb-4">Conecta tus datos para comenzar con el scrap de las redes sociales</p>
 
+        {#each keys as key,index}
+            <div class="api-section-container mb-6">
+                <form class="formulario-basico" method="post" use:enhance={actualizarApi} id="formulario-{index}">
+                    <div class="api-section-body p-6">
+                        <div class="api-section-logo">
+                            <div>
+                                {#if key?.logo}
+                                    <img src="/images/apify-logo.svg" alt="apify logo" />
+                                {:else}
+                                    <span>API</span>
+                                {/if}
+                            </div>
+                        </div>
+                        <div class="api-section-information">
+                            <h2 class="mb-2">{key.name}</h2>
+                            <!--<p>{key?.description ?? 'Información de la API'}</p>-->
+                            <br>
+                            <div class="form-group">
+                                <label for="key">API Key</label>
+                                <input class="api-section-password" placeholder="123456789" type="password" name="key" value="{key.key}" autocomplete="off" />
+                                <input type="hidden" name="name" value="{key.name}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="api-section-footer p-4 d-flex j-between a-center">
+                        <div class="api-section-footer-status api-section-footer-status-done">
+                            <i class="far fa-check-circle"></i>
+                            <p>Conexión exitosa!</p>
+                        </div>
+                        <div class="api-section-footer-button">
+                            <button 
+                                class="scraper-button api-section-button" 
+                                class:scraper-button-disabled={btn_loading} 
+                                class:scraper-button-enabled={!btn_loading} 
+                                class:scraper-button-loading={btn_loading} 
+                                type="submit"
+                                on:click={()=>{actualizarApi({index})}}
+                            >
+                                {#if btn_loading}
+                                    <i class="fas fa-circle-notch"></i>
+                                {/if}
+                                <span><i class="fas fa-share-square"></i> Guardar</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        {/each}
+
+        <!--agregar espacio para nueva key-->
         <div class="api-section-container mb-6">
-            <form class="formulario-basico" method="post" use:enhance={actualizarApi} id="formulario">
+            <form class="formulario-basico" method="post" use:enhance={actualizarApi} id="formulario-{keys.length}">
                 <div class="api-section-body p-6">
                     <div class="api-section-logo">
                         <div>
                             <span>API</span>
-                            <!--<img src="/images/apify-logo.svg" alt="apify logo" />-->
                         </div>
                     </div>
                     <div class="api-section-information">
-                        <h2 class="mb-2">Default</h2>
-                        <p>Web Scraping and automation platform with ready-made Actors.</p>
+                        <h2 class="mb-2">Nueva Key</h2>
                         <br>
                         <div class="form-group">
+                            <label for="key">Nombre</label>
+                            <input class="api-section-text" placeholder="API Google" type="text" name="name" value="" autocomplete="off" />
+                        </div>
+                        <div class="form-group">
                             <label for="key">API Key</label>
-                            <input class="api-section-input" type="password" name="key" value="123" autocomplete="off" />
+                            <input class="api-section-password" placeholder="123456789" type="password" name="key" value="" autocomplete="off" />
                         </div>
                     </div>
                 </div>
                 <div class="api-section-footer p-4 d-flex j-between a-center">
                     <div class="api-section-footer-status">
-                        <i class="{api_icon_status}"></i>
-                        <p>{api_result_status}</p>
+                        <i class="far fa-clock"></i>
+                        <p>Sin conectar</p>
                     </div>
                     <div class="api-section-footer-button">
                         <button 
@@ -112,7 +173,7 @@
                             class:scraper-button-enabled={!btn_loading} 
                             class:scraper-button-loading={btn_loading} 
                             type="submit"
-                            on:click={actualizarApi}
+                            on:click={()=>{actualizarApi({index})}}
                         >
                             {#if btn_loading}
                                 <i class="fas fa-circle-notch"></i>
@@ -123,7 +184,7 @@
                 </div>
             </form>
         </div>
-
+        
     </section>
 
     <Menu user_id={user} user_permissions={permissions} active="settings" />
@@ -132,8 +193,10 @@
         <p slot="body">
             {@html modal_text}
         </p>
-        <button type="button" aria-label="cerrar modal" class="scraper-button2 scraper-button2-enabled mx-auto" on:click={()=>{ModalInstance.cerrarModal()}}>
+        <button type="button" aria-label="cerrar modal" class="scraper-button2 scraper-button2-enabled mx-auto" on:click={()=>{recargarPagina()}}>
             <span>Aceptar</span>
         </button>
     </Modal>
 </div>
+
+<Loader loader_status={loader_status} />

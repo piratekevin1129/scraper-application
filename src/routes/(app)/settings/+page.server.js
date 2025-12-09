@@ -1,7 +1,7 @@
 export const actions = {
     default: async ({request,cookies,fetch }) => {
         const form = await request.formData();
-        const { key } = Object.fromEntries(form);
+        const { name,key } = Object.fromEntries(form);
 
         const session = cookies.get('session');
         if(!session){
@@ -16,7 +16,7 @@ export const actions = {
                     'Content-Type':'application/json'
                 },
                 body:JSON.stringify({api_keys:[
-                    {'name':"default",'key':key}
+                    {'name':name,'key':key}
                 ]})
             });
             
@@ -29,6 +29,21 @@ export const actions = {
                 if(data?.error){
                     return {success: false, error: 'No se pudo actualizar la api key'};
                 }else{
+                    //actualizar sessión de keys
+                    const cookie_keys = cookies.get('session_keys');
+                    /*let session_keys = [];
+                    if(cookie_keys){
+                        session_keys = JSON.parse(cookie_keys).keys;
+                    }*/
+                    let session_keys = [{'name':name,'key':key}];
+
+                    cookies.set('session_keys',JSON.stringify({
+                        'keys':session_keys
+                    }),{
+                        httpOnly:false,
+                        path:'/'
+                    });
+
                     return {success: true, result:data};
                 }
             }

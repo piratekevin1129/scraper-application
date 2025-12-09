@@ -37,20 +37,6 @@
         body:[]
     }
 
-    function statusData(job_status){
-        const status = String(job_status).toLowerCase();
-        let clase_status = 'error';
-        let percent = 0;
-        if(status=='running'){
-            clase_status = 'running';
-            percent = 50;
-        }else if(status=='done'){
-            clase_status = 'done';
-            percent = 100;
-        }
-        return {clase_status:clase_status,percent:percent}
-    }
-
     function clickVerJob(job_id){
         modal_data.status = true;
         modal_data.size = 'normal';
@@ -128,7 +114,7 @@
     <section id="app-container" class="app-container-open">
         <div class="p-relative w100 d-flex j-between md_j-center a-center mb-4">
             <div class="col-title-button">
-                <h1 class="scraper-title">Scraper Manager</h1>
+                <h1 class="scraper-title">Gestionar Jobs</h1>
             </div>
             <form class="col-btn" method="post" use:enhance={crearJob} id="formulario">
                 <button 
@@ -142,7 +128,7 @@
                     {#if btn_loading}
                         <i class="fas fa-circle-notch"></i>
                     {/if}
-                    <span><i class="fas fa-plus-circle"></i> Add New Source</span>
+                    <span><i class="fas fa-plus-circle"></i> Agregar Job</span>
                 </button>
                 <!--<input type="hidden" name="connector_type" value="fake_api" />-->
             </form>
@@ -158,12 +144,12 @@
                         <span>{utils.decodeFecha(job.created_at)}</span>
                     </td>
                     <td>
-                        <div class="status-container status-container-{statusData(job.status).clase_status}">
+                        <div class="status-container status-container-{utils.statusData(job.status).clase_status}">
                             <span class="status-tag">{job.status.toLowerCase()}</span>
                             <div class="status-progressbar">
-                                <div style="width:{statusData(job.status).percent}%"></div>
+                                <div style="width:{utils.statusData(job.status).percent}%"></div>
                             </div>
-                            <span class="status-percent">{statusData(job.status).percent}%</span>
+                            <span class="status-percent">{utils.statusData(job.status).percent}%</span>
                         </div>
                     </td>
                     <td class="md_px-0" align="middle">

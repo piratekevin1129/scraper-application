@@ -10,23 +10,6 @@ export async function load({cookies,fetch,parent}) {
     });
     
     const data_jobs = await res_jobs.json();
-
-    /*const { data } = await parent();
-    if(!data){
-        return {
-            jobs:[],
-            session_user:"",
-            session_permissions:[],
-            error:'No se pudo combinar los datos'
-        }
-    }else{
-        return {
-            jobs:data_jobs,
-            session_user:data.session_user,
-            session_permissions:data.session_permissions,
-            error:''
-        }
-    }*/
     return {
         jobs:data_jobs
     }; 

@@ -4,7 +4,7 @@
     height: 100%;
     top: 0px;
     left: 0px;
-    background-color: rgba(12,15,27,0.8);
+    background-color: rgba(0,0,0,0.75);
     z-index: 10;
 }
 
@@ -86,4 +86,10 @@
     width: 100%;
     font-size: 0.8rem;
     text-align: center;
+}
+
+#loader-box i{
+    font-size: 3rem;
+    color: #94a3b8;
+    animation: animacion-button-loader 1s infinite linear;
 }

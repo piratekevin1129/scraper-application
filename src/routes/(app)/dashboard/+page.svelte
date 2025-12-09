@@ -1,7 +1,24 @@
 <script>
     import Menu from '$lib/components/Menu.svelte';
-    import Select from '$lib/components/Select.svelte';
-    
+    import TablaB from '$lib/components/TablaB.svelte';
+    import Modal from '$lib/components/Modal.svelte';
+    let ModalInstance;
+    import * as utils from '$lib/scripts/utils';
+
+    import { enhance } from '$app/forms';
+
+    //datos para el modal al ver detalles del job
+    let modal_data = {
+        status:false,
+        size:'normal',
+        icon:'',
+        title:'',
+        type:'neutral',
+        loading:false,
+        loadingtext:''
+    };
+    let modal_text;
+
     //datos traidos del backend antes de cargar
     export let data;
     //console.log(data);
@@ -10,115 +27,43 @@
     const user = data.session_user;
     //permisos para validar si se pintan algunos botones o no
     const permissions = data.session_permissions;
-    
+    //lista de los jobs
+    let jobs = data.jobs;
+
 </script>
 
 <div class="container">
     <section id="app-container" class="app-container-open">
-        <div class="p-relative w100 d-flex j-between md_j-center a-center mb-4">
-            <div class="col-title-button">
+        <div class="p-relative w100 mb-4">
+            <div class="col-title">
                 <h1 class="scraper-title mb-1">Bienvenido, {user}!</h1>
-                <p class="scraper-subtitle">Aquí encontaras un resumen de tu actividad social</p>
+                <p class="scraper-subtitle">Aquí encontaras un resumen del estado de los jobs</p>
             </div>
-
-            <Select />
         </div>
 
         <div class="cards-container mb-6">
-            <div class="scraper-card w-4_g-20">
-                <h6>Total Profiles tracked</h6>
-                <h2>1,204</h2>
-                <h5 class="scraper-card-positive">+5.2%</h5>
-            </div>
-            <div class="scraper-card w-4_g-20">
-                <h6>Total Profiles tracked</h6>
-                <h2>1,204</h2>
-                <h5 class="scraper-card-positive">+5.2%</h5>
-            </div>
-            <div class="scraper-card w-4_g-20">
-                <h6>Total Profiles tracked</h6>
-                <h2>1,204</h2>
-                <h5 class="scraper-card-negative">-5.2%</h5>
-            </div>
-            <div class="scraper-card w-4_g-20">
-                <h6>Total Profiles tracked</h6>
-                <h2>1,204</h2>
-                <h5 class="scraper-card-neutral">0%</h5>
-            </div>
+            {#each jobs as job}
+                <div class="scraper-card2 w-4_g-20">
+                    <div class="scraper-card2-icon">
+                        <div>
+                            <i class="fas fa-hashtag"></i>
+                        </div>
+                        <p>Job Scraper</p>
+                    </div>
+                    <div class="scraper-card2-status {utils.statusData(job.status).clase_status}">
+                        <p>
+                            <i class="fas fa-circle"></i>
+                            <span>{job.status.toLowerCase()}</span>
+                        </p>
+                    </div>
+                    <h5 class="scraper-card-{utils.statusData(job.status).clase_status}">
+                        {utils.statusData(job.status).percent}%
+                    </h5>
+                </div>
+            {/each}
         </div>
 
-        <h1 class="scraper-title2 mb-4">Connected Sources</h1>
-
-        <div class="cards-container mb-6">
-            <div class="scraper-card2 w-4_g-20">
-                <div class="scraper-card2-icon">
-                    <div>
-                        <i class="fab fa-facebook-square"></i>
-                    </div>
-                    <p>Facebook</p>
-                </div>
-                <div class="scraper-card2-status healhty">
-                    <p>
-                        <i class="fas fa-circle"></i>
-                        <span>Healthy</span>
-                    </p>
-                </div>
-                <button class="scraper-button2 scraper-card2-btn" type="button">
-                    <span>Quick Scrape</span>
-                </button>
-            </div>
-            <div class="scraper-card2 w-4_g-20">
-                <div class="scraper-card2-icon">
-                    <div>
-                        <i class="fab fa-instagram-square"></i>
-                    </div>
-                    <p>Instagram</p>
-                </div>
-                <div class="scraper-card2-status healhty">
-                    <p>
-                        <i class="fas fa-circle"></i>
-                        <span>Healthy</span>
-                    </p>
-                </div>
-                <button class="scraper-button2 scraper-card2-btn" type="button">
-                    <span>Quick Scrape</span>
-                </button>
-            </div>
-            <div class="scraper-card2 w-4_g-20">
-                <div class="scraper-card2-icon">
-                    <div>
-                        <i class="fas fa-hashtag"></i>
-                    </div>
-                    <p>X (Twitter)</p>
-                </div>
-                <div class="scraper-card2-status warning">
-                    <p>
-                        <i class="fas fa-circle"></i>
-                        <span>Warning</span>
-                    </p>
-                </div>
-                <button class="scraper-button2 scraper-card2-btn" type="button">
-                    <span>Quick Scrape</span>
-                </button>
-            </div>
-            <div class="scraper-card2 w-4_g-20">
-                <div class="scraper-card2-icon">
-                    <div>
-                        <i class="fab fa-google-plus-square"></i>
-                    </div>
-                    <p>Google Ads</p>
-                </div>
-                <div class="scraper-card2-status error">
-                    <p>
-                        <i class="fas fa-circle"></i>
-                        <span>Error</span>
-                    </p>
-                </div>
-                <button class="scraper-button2 scraper-card2-btn" type="button">
-                    <span>Quick Scrape</span>
-                </button>
-            </div>
-        </div>
+        <!--<h1 class="scraper-title2 mb-4">Connected Sources</h1>-->
 
     </section>
 

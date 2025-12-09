@@ -49,3 +49,17 @@ export function decodeFecha(datestr,type = 'default'){
         return '0000-00-00 00:00:00';
     }
 }
+
+export function statusData(job_status){
+    const status = String(job_status).toLowerCase();
+    let clase_status = 'failed';
+    let percent = 0;
+    if(status=='running'){
+        clase_status = 'running';
+        percent = 50;
+    }else if(status=='done'){
+        clase_status = 'done';
+        percent = 100;
+    }
+    return {clase_status:clase_status,percent:percent}
+}

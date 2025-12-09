@@ -1,5 +1,5 @@
 <script>
-    let loaderRef; 
+    export let loader_status;
     export function unsetLoader(){
         loaderRef.className = 'loader-off'
     }
@@ -12,10 +12,11 @@
     @import '/css/loader.css';
 </style>
 
-<div bind:this={loaderRef} id="loader" class="loader-off">
+<div id="loader" class="loader-{loader_status}">
     <div id="loader-box">
-        <div id="loader-ball"></div>
+        <!--<div id="loader-ball"></div>
         <div id="loader-mask"></div>
-        <!--<p>Cargando</p>-->
+        <p>Cargando</p>-->
+        <i class="fas fa-circle-notch"></i>
     </div>
 </div>

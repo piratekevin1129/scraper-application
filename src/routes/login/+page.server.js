@@ -66,6 +66,14 @@ export const actions = {
                     maxAge:(60*60*24*expires_in_days)
                 });
 
+                cookies.set('session_keys',JSON.stringify({
+                    'keys':api_keys
+                }),{
+                    httpOnly:false,
+                    path:'/',
+                    maxAge:(60*60*24*expires_in_days)
+                });
+
                 return {
                     success: true,
                     user_id:user_id,

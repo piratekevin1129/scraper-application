@@ -2,14 +2,12 @@
     import * as login from '$lib/scripts/login';
     import { onMount } from 'svelte';
     import Loader from '$lib/components/Loader.svelte';
+    let loader_status = 'on';
     import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
-    //export let form;
-
-    let loaderRef;
 
     onMount(()=> {
-        loaderRef.unsetLoader();
+        loader_status = 'off';
     })
 
     let form_response = {error:false,message:''};
@@ -20,12 +18,7 @@
             btn_loading = true;
             form_response.error = false;
             
-            // validacion client side
-            /*if (!data.get('user')) {
-                alert('datos vacíos!');
-                cancel(); // Prevent form submission
-                return;
-            }*/
+            // validacion client side pendiente
     
             return async ({result,update}) => {
                 // codigo luego de respuesta del servidor
@@ -48,12 +41,12 @@
 <div class="container">
     <div class="login-container d-flex">
         <section class="login-hidden-menu">
-
         </section>
+
         <section class="login-section d-flex column b-box p-10">
             <form method="post" use:enhance={enviarFormulario} id="formulario">
-                <h1 class="login-title mb-4">Log In to Your Account</h1>
-                <h2 class="login-subtitle mb-6">Welcome back! Please enter your details.</h2>
+                <h1 class="login-title mb-4">Iniciar sesión</h1>
+                <h2 class="login-subtitle mb-6">Bienvenido! Por favor diligencia tus datos de ingreso.</h2>
         
                 <div class="login-form-group">
                     <input name="user" type="text" value="" autocomplete="off" class="px-4" on:focus="{login.focusLoginInput}" on:blur="{login.blurLoginInput}" />
@@ -69,7 +62,7 @@
                     </button>
                 </div>
         
-                <a href="/forgot-password" class="login-forgot my-6">Forgot Password?</a>
+                <a href="/forgot-password" class="login-forgot my-6">Recordar contraseña</a>
                 
                 <div class="login-message-error" class:login-message-off={!form_response.error} class:login-message-on={form_response.error}>
                     <div class="login-message">
@@ -82,19 +75,19 @@
                     {#if btn_loading}
                         <i class="fas fa-circle-notch"></i>
                     {/if}
-                    <span>Login</span>
+                    <span>Iniciar sesión</span>
                 </button>
             </form>
         </section>
     
         <section class="particles-container">
             <video id="particles-video" autoplay loop playsinline muted>
-                <source src="/media/particles.mp4" type="video/mp4" />
+                <source src="/media/particles_v2.mp4" type="video/mp4" />
             </video>
             <div class="particles-layer"></div>
         </section>
     </div>
 </div>
 
-<Loader bind:this={loaderRef} />
+<Loader loader_status={loader_status} />
 

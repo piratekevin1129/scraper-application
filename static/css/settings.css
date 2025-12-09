@@ -48,12 +48,16 @@
     font-size: 1.15rem;
     font-weight: 700;
     color: #ffffff;
+    text-transform: capitalize;
 }
 .api-section-information p{
     font-size: 1rem;
     color: #9ca3af;
 }
-.api-section-input{
+.api-section-password{
+    max-width: 60%;
+}
+.api-section-text{
     max-width: 60%;
 }
 
@@ -98,4 +102,8 @@
 }
 .api-section-button{
     width: auto !important;
+}
+
+@media (max-width: 768px) {
+
 }
