@@ -15,11 +15,16 @@ login/
         -> No hay validación de datos vacios (pendiente para más seguridad).
         -> si todo sale bien con el login, se consume inmediatamente el servicio #4.
         -> si todo sale bien se guardan los siguientes datos en cookies, asi:
-            * cookie (httpOnly:true) llamada "session" solo para el servidor, aqui se guarda el token y el nombre de usuario
-            * cookie llamada "session_user" se guarda el nombre de usuario
-            * cookie llamada "session_permissions" se guarda un json con un array con los roles o permisos
-            * cookie llamada "session_keys" se guarda un json con un array con las keys
-        -> luego de guardar las cookies, se manda una señal a la vista para redirigir a /dashboard
+            * cookie (httpOnly:true) llamada "session" solo para el servidor, aqui se guarda el token y el nombre de usuario.
+            * cookie llamada "session_user" se guarda el nombre de usuario.
+            * cookie llamada "session_permissions" se guarda un json con un array con los roles o permisos.
+            * cookie llamada "session_keys" se guarda un json con un array con las keys.
+        -> luego de guardar las cookies, se manda una señal a la vista para redirigir a /dashboard.
     /page.svelte
-        -> se importa el componente "Loader" ya que esta vista carga un video de 3.9M
-        -> se importan funciones javascript "scripts/login.js" para el comportamiento de los input y otras cositas
+        -> se importa el componente "Loader" ya que esta vista carga un video de 3.9M.
+        -> se importan funciones javascript "scripts/login.js" para el comportamiento de los input y otras cositas.
+
+
+(app) -> se meten todas las otras vistas en esta carpeta para que carguen todas el mismo layout, ya que el layout del login es muy distinto.
+    /layout.server.js
+        -> se detecta si ya hay una sesión, si hay lo deja pasar, si no hay lo redirige al /login.

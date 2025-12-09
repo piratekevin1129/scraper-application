@@ -16,7 +16,7 @@
 
     function enviarFormulario({form,data,action,cancel}) {
         //bloqueamos el botón para que no haga click repetidas veces
-        document.getElementById('login-btn-formulario').disabled = true;
+        //document.getElementById('login-btn-formulario').disabled = true;
         btn_loading = true;
         form_response.error = false;
         
@@ -26,7 +26,7 @@
             // codigo luego de respuesta del servidor
             console.log(result.data)
             //poner boton dispoible para click
-            document.getElementById('login-btn-formulario').disabled = false;
+            //document.getElementById('login-btn-formulario').disabled = false;
             btn_loading = false;
 
             if (result.data.success == true) {
